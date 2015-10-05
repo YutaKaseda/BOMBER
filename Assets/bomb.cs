@@ -10,9 +10,13 @@ public class bomb : MonoBehaviour {
 	Rigidbody2D rigBody2d;
 	int bombTime;						// 爆発までの時間
 	int bombFlg;						// ボムの状態 0.発射していない　1.発射している　2.爆発した
+	GameObject bombEffect;				// ボムの爆発エフェクト
+
 
 	// Use this for initialization
 	void Start () {
+		// エフェクトのロード
+		bombEffect = Resources.Load ("Prefab/EffBomb") as GameObject;
 		// fpsを60で固定
 		Application.targetFrameRate = 60;
 		rigBody2d = gameObject.AddComponent<Rigidbody2D> ();
@@ -64,7 +68,7 @@ public class bomb : MonoBehaviour {
 			bombTime--;
 		}
 		// ボム爆散
-		if (bombTime <= 0) {
+		if (bombTime <= 0 && bombFlg != 2) {
 
 			Debug.Log ("bomb!!");
 			// ボム消去
@@ -87,10 +91,9 @@ public class bomb : MonoBehaviour {
 	void deleteBomb(){
 
 		// 爆発エフェクト
-
+		Instantiate (bombEffect,transform.position,transform.rotation);
 		// ボムの消去
 		Destroy (gameObject);
-
 		// シーンの移動
 
 	}
