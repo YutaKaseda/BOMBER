@@ -13,6 +13,10 @@ public class NormalObjectCollision : MonoBehaviour {
     //BombCollisionからSendMessageで発行
     void collisionMethod()
     {
+
+        Debug.Log("DataManagerにアクセスしてスコアを加算");
+        GameObject.Find("DataManager").GetComponent<DataManager>().plusScore(1000.0f);
+
         Debug.Log("objectDestroyメソッドを呼び出します");
         //破壊される処理、暫定的にオブジェクトを消す処理を記述
         objectDestroy();
