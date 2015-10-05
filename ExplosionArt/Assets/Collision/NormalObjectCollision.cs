@@ -11,7 +11,7 @@ using System.Collections;
 public class NormalObjectCollision : MonoBehaviour {
 
     //BombCollisionからSendMessageで発行
-    void collisionMethod()
+    public void collisionMethod()
     {
         Debug.Log("objectDestroyメソッドを呼び出します");
         //破壊される処理、暫定的にオブジェクトを消す処理を記述
