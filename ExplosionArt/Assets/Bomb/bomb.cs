@@ -30,28 +30,7 @@ public class bomb : MonoBehaviour {
 
 		// ボムが発射していない時のみ判定
 		if (bombFlg == 0) {
-			if (Input.GetMouseButtonDown (0)) {
-
-				fastMousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-				//Debug.Log ("FMP "+fastMousePosition);
-			}
-			if (Input.GetMouseButton (0)) {
-				nowMousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-				// マウスを動かしている時のみ移動させる
-				if (Input.GetAxis ("Mouse X") != 0 && Input.GetAxis ("Mouse Y") != 0) {
-					moveClick = new Vector2 ((transform.position.x + (nowMousePosition.x - fastMousePosition.x)), (transform.position.y + (nowMousePosition.y - fastMousePosition.y)));
-					transform.position = moveClick / 2;
-				}
-				//Debug.Log ("NMP "+nowMousePosition);
-			}
-			if (Input.GetMouseButtonUp (0)) {
-
-				lastMousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);		
-				//Debug.Log ("LMP "+lastMousePosition);
-				//Debug.Log ("FMP - LMP "+ (fastMousePosition - lastMousePosition));
-				// ボムの状態を変更
-				bombFlg = 1;
-			}
+			input ();
 		}
 		// ボムの制御
 		BombControll ();
@@ -63,6 +42,32 @@ public class bomb : MonoBehaviour {
 			lastMousePosition *= 0;
 		}
 	}
+
+	// インプット
+	void input(){
+
+		if (Input.GetMouseButtonDown (0)) {	
+			fastMousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			//Debug.Log ("FMP "+fastMousePosition);
+		}
+		if (Input.GetMouseButton (0)) {
+			nowMousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			// マウスを動かしている時のみ移動させる
+			if (Input.GetAxis ("Mouse X") != 0 && Input.GetAxis ("Mouse Y") != 0) {
+				moveClick = new Vector2 ((transform.position.x + (nowMousePosition.x - fastMousePosition.x)), (transform.position.y + (nowMousePosition.y - fastMousePosition.y)));
+				transform.position = moveClick / 2;
+			}
+			//Debug.Log ("NMP "+nowMousePosition);
+		}
+		if (Input.GetMouseButtonUp (0)) {
+			lastMousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);		
+			//Debug.Log ("LMP "+lastMousePosition);
+			//Debug.Log ("FMP - LMP "+ (fastMousePosition - lastMousePosition));
+			// ボムの状態を変更
+			bombFlg = 1;
+		}
+	}
+
 	
 	// ボムの制御
 	void BombControll(){
