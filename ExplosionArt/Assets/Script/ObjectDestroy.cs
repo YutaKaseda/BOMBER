@@ -10,7 +10,7 @@ public class ObjectDestroy : MonoBehaviour
     {
         if (other.gameObject.tag == Tag)
         {
-            Debug.Log("オブジェクト破壊");
+            Debug.Log("NormalObjectタグを持つ物体を破壊");
             Destroy(other.gameObject);
 
             if (EffectPrefab != null)

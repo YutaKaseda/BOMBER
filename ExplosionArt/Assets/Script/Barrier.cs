@@ -17,7 +17,7 @@ public class Barrier : MonoBehaviour
     {
         if (Bomb.gameObject.tag == "Bomb")
         {
-            Debug.Log("ボムが接触したら真にするよ");
+            Debug.Log("Bombタグを持ってる物体が接触したら真にするよ");
             StealthWall = true;
         }
     }
@@ -26,7 +26,7 @@ public class Barrier : MonoBehaviour
     {
         if (StealthWall)
         {
-            Debug.Log("isTriggerを偽にするよ");
+            Debug.Log("barrierのisTriggerを偽にするよ");
             barrier.isTrigger = false;
         }
     }
