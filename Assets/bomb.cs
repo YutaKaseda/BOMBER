@@ -13,10 +13,12 @@ public class bomb : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		// fpsを60で固定
+		Application.targetFrameRate = 60;
 		rigBody2d = gameObject.AddComponent<Rigidbody2D> ();
 		rigBody2d.isKinematic = true;
 
-		bombTime = 600;
+		bombTime = 300;
 		bombFlg = 0;
 
 	}
@@ -33,6 +35,7 @@ public class bomb : MonoBehaviour {
 
 		if (Input.GetMouseButton (0)) {
 			nowMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			// マウスを動かしている時のみ移動させる
 			if(Input.GetAxis("Mouse X") != 0 && Input.GetAxis("Mouse Y") != 0 ){
 				moveClick =new Vector2 ((transform.position.x + (nowMousePosition.x - fastMousePosition.x)),(transform.position.y + (nowMousePosition.y - fastMousePosition.y)));
 				transform.position = moveClick/2;
@@ -44,26 +47,51 @@ public class bomb : MonoBehaviour {
 			lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);		
 			//Debug.Log ("LMP "+lastMousePosition);
 			//Debug.Log ("FMP - LMP "+ (fastMousePosition - lastMousePosition));
+			// ボム移動
 			moveBomb ();
+
+			// リセット
 			fastMousePosition *= 0;
 			nowMousePosition *= 0;
 			lastMousePosition *= 0;
 
-
 		}
-	
+
+		//ボム飛翔中
+		if (bombFlg == 1) {
+			Debug.Log ("position " + transform.position);
+			Debug.Log ("bombTime " + bombTime);
+			bombTime--;
+		}
+		// ボム爆散
+		if (bombTime <= 0) {
+
+			Debug.Log ("bomb!!");
+			// ボム消去
+			deleteBomb();
+			bombFlg = 2;
+		}
 	}
-
+	
+	// ボム移動中の処理
 	void moveBomb(){
-
+		bombFlg = 1;
 		rigBody2d.isKinematic = false;
 		rigBody2d.AddForce ((fastMousePosition - lastMousePosition)*200);
-		Debug.Log ("FMP -LMP(moveBomb) " + (fastMousePosition - lastMousePosition));
-
-
+		//Debug.Log ("FMP -LMP(moveBomb) " + (fastMousePosition - lastMousePosition));
 
 
 	}
 
+	// ボム消去時の処理
+	void deleteBomb(){
 
+		// 爆発エフェクト
+
+		// ボムの消去
+		Destroy (gameObject);
+
+		// シーンの移動
+
+	}
 }
