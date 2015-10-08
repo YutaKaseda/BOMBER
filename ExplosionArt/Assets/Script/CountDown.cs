@@ -6,27 +6,24 @@ public class CountDown : MonoBehaviour
 {
     const int ExplosionTime = 6;
 
-    Text CountDownTaxt;
     int TimeLeft = ExplosionTime;
+    public Text CountDounText;
 
     void Start()
     {
-        CountDownTaxt = GetComponent<Text>();
+        CountDounText = GetComponent<Text>();
     }
 
-    void Update()
+    public void Action()
     {
-        CountDownTaxt.text = "爆発まで：" + TimeLeft + "秒";
-
-        if (TimeLeft == ExplosionTime)
-        {
-            Debug.Log("カウントダウン開始");
-            StartCoroutine(countdown());
-        }
+        CountDounText.text = "爆発まで：" + TimeLeft + "秒";
+        StartCoroutine(countdown());
     }
 
     IEnumerator countdown ()
     {
+        Debug.Log("カウントダウン開始");
+
         while (TimeLeft > 0)
         {
             TimeLeft--;
