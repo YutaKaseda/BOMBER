@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class CountDown : MonoBehaviour
 {
+    const int ExplosionTime = 6;
+
     Text CountDownTaxt;
-    int TimeLeft = 5;
+    int TimeLeft = ExplosionTime;
 
     void Start()
     {
@@ -14,22 +16,22 @@ public class CountDown : MonoBehaviour
 
     void Update()
     {
-        CountDownTaxt.text = "残り時間" + TimeLeft + "秒";
+        CountDownTaxt.text = "爆発まで：" + TimeLeft + "秒";
 
-        if (TimeLeft == 5)
+        if (TimeLeft == ExplosionTime)
         {
+            Debug.Log("カウントダウン開始");
             StartCoroutine(countdown());
-            Debug.Log("b");
         }
     }
 
     IEnumerator countdown ()
     {
-        while (TimeLeft >= 0)
+        while (TimeLeft > 0)
         {
-            yield return new WaitForSeconds(1.0f);
             TimeLeft--;
+            yield return new WaitForSeconds(1.0f);
         }
-        Debug.Log("a");
+        Debug.Log("カウントダウン終了");
     }
 }
