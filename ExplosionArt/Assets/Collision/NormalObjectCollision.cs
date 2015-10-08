@@ -15,7 +15,7 @@ public class NormalObjectCollision : MonoBehaviour {
     {
 
         Debug.Log("DataManagerにアクセスしてスコアを加算");
-        //GameObject.Find("DataManager").GetComponent<ScoreManager>().plusScore(1000.0f);
+        GameObject.Find("DataManager").GetComponent<ScoreManager>().plusScore(10000.0f);
 
         Singleton<SoundPlayer>.instance.playSE("ObjectBreak");
 

@@ -16,8 +16,8 @@ public class ScoreManager : MonoBehaviour {
 
         if (scoreYard > 0)
         {
-            score += 100;
-            scoreYard -= 100;
+            score += 750;
+            scoreYard -= 750;
         }
 
     }
