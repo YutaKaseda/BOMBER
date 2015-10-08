@@ -10,9 +10,6 @@ public class ObjectDestroy : MonoBehaviour
     {
         if (other.gameObject.tag == Tag)
         {
-            Debug.Log("NormalObjectタグを持つ物体を破壊");
-            Destroy(other.gameObject);
-
             if (EffectPrefab != null)
             {
                 Debug.Log("爆発エフェクト作るよ");
@@ -22,6 +19,8 @@ public class ObjectDestroy : MonoBehaviour
                     Quaternion.identity
                     );
             }
+            Debug.Log("NormalObjectタグを持つ物体を破壊");
+            Destroy(other.gameObject);
         }
     }
 }
