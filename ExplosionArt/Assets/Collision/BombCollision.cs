@@ -21,8 +21,10 @@ public class BombCollision : MonoBehaviour
         switch (col.gameObject.tag){
 
             case "NormalObject":    //箱、樽
+                
                 col.gameObject.GetComponent<NormalObjectCollision>().collisionMethod();
                 Debug.Log("NormalObjectのcollisionMethodを呼び出します");
+                
                 break;
 
             default:                //処理が追加されていないとき

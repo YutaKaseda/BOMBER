@@ -10,13 +10,21 @@ using System.Collections;
 //------------------------------------------------------
 public class NormalObjectCollision : MonoBehaviour {
 
+    GameObject bombEffect;
+
+    void Awake()
+    {
+        bombEffect = Resources.Load("Prefab/EffBomb") as GameObject;
+    }
+
     //BombCollisionから発行
     public void collisionMethod()
     {
 
         Debug.Log("DataManagerにアクセスしてスコアを加算");
         GameObject.Find("DataManager").GetComponent<ScoreManager>().plusScore(10000.0f);
-
+        // 爆発エフェクト
+        Instantiate(bombEffect, transform.position, transform.rotation);
         Singleton<SoundPlayer>.instance.playSE("ObjectBreak");
 
         Debug.Log("objectDestroyメソッドを呼び出します");
