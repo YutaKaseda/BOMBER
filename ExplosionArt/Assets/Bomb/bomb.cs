@@ -78,6 +78,12 @@ public class bomb : MonoBehaviour {
 			rigBody2d.AddForce ((fastMousePosition - lastMousePosition) * 200);
 			//Debug.Log ("FMP -LMP(moveBomb) " + (fastMousePosition - lastMousePosition));
 
+            if (bombTime % 60 == 0 && bombTime != 0)
+            {
+                Debug.Log("カウントダウン");
+                Singleton<SoundPlayer>.instance.playSE("CountDown");
+            }
+
 			//ボム飛翔中
 			Debug.Log ("position " + transform.position);
 			Debug.Log ("bombTime " + bombTime);
@@ -85,7 +91,7 @@ public class bomb : MonoBehaviour {
 		}
 		// ボム爆散
 		if (bombTime <= 0 && bombFlg != 2) {
-			
+            Singleton<SoundPlayer>.instance.playSE("Explosion");
 			Debug.Log ("bomb!!");
 			// ボム消去
 			deleteBomb();
