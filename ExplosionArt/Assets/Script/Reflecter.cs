@@ -21,7 +21,7 @@ public class Reflecter : MonoBehaviour
         if (other.gameObject.tag == gameTag)
         {
             Debug.Log("ボムがぶつかったら反射させるよ");
-            rgid2D.AddForce(direction * 100);
+            rgid2D.AddForce(direction);
         }
 	}
 }
