@@ -25,13 +25,13 @@ public class SoundPlayer{
     public SoundPlayer()
     {
         //SE
-        audioClips.Add("se001", new AudioClipInfo("PowerCharge", "se001"));
-        audioClips.Add("se002", new AudioClipInfo("CountDown", "se002"));
-        audioClips.Add("se003", new AudioClipInfo("BombFlying", "se003"));
-        audioClips.Add("se004", new AudioClipInfo("Explosion", "se004"));
-        audioClips.Add("se005", new AudioClipInfo("ObjectBreak", "se005"));
-        audioClips.Add("se006", new AudioClipInfo("ScoreUp", "se006"));
-        audioClips.Add("se007", new AudioClipInfo("Result","se007"));
+        audioClips.Add("PowerCharge", new AudioClipInfo("PowerCharge", "se001"));
+        audioClips.Add("CountDown", new AudioClipInfo("CountDown", "se002"));
+        audioClips.Add("BombFlying", new AudioClipInfo("BombFlying", "se003"));
+        audioClips.Add("Explosion", new AudioClipInfo("Explosion", "se004"));
+        audioClips.Add("ObjectBreak", new AudioClipInfo("ObjectBreak", "se005"));
+        audioClips.Add("ScoreUp", new AudioClipInfo("ScoreUp", "se006"));
+        audioClips.Add("Result", new AudioClipInfo("Result","se007"));
         //BGM
         //audioClips.Add("");
     }

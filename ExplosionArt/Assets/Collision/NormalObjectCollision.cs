@@ -10,12 +10,14 @@ using System.Collections;
 //------------------------------------------------------
 public class NormalObjectCollision : MonoBehaviour {
 
-    //BombCollisionからSendMessageで発行
+    //BombCollisionから発行
     public void collisionMethod()
     {
 
         Debug.Log("DataManagerにアクセスしてスコアを加算");
-        GameObject.Find("DataManager").GetComponent<ScoreManager>().plusScore(1000.0f);
+        //GameObject.Find("DataManager").GetComponent<ScoreManager>().plusScore(1000.0f);
+
+        Singleton<SoundPlayer>.instance.playSE("ObjectBreak");
 
         Debug.Log("objectDestroyメソッドを呼び出します");
         //破壊される処理、暫定的にオブジェクトを消す処理を記述
