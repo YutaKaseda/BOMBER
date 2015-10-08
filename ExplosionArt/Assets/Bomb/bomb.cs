@@ -89,9 +89,18 @@ public class bomb : MonoBehaviour {
 			Debug.Log ("bombTime " + bombTime);
 			bombTime--;
 		}
+
+        if (bombTime == 1 && bombFlg != 2)
+        {
+            Singleton<SoundPlayer>.instance.playSE("Explosion");
+            // 爆発エフェクト
+            Instantiate(bombEffect, transform.position, transform.rotation);
+            // 爆発の範囲
+            GetComponent<CircleCollider2D>().radius = 2;
+        }
+
 		// ボム爆散
 		if (bombTime <= 0 && bombFlg != 2) {
-            Singleton<SoundPlayer>.instance.playSE("Explosion");
 			Debug.Log ("bomb!!");
 			// ボム消去
 			deleteBomb();
@@ -101,9 +110,6 @@ public class bomb : MonoBehaviour {
 
 	// ボム消去時の処理
 	void deleteBomb(){
-
-		// 爆発エフェクト
-		Instantiate (bombEffect,transform.position,transform.rotation);
 		// ボムの消去
 		Destroy (gameObject);
 		// シーンの移動
